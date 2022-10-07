@@ -1,0 +1,12 @@
+[Unit]
+Description=campus schedule
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/node /home/ivan/campus_ical_generator
+Restart=always
+Environment=PORT=11215
+
+[Install]
+WantedBy=default.target

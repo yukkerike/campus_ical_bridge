@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Организации</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+     
+    <h1>{{for}}</h1>
+    {{#each groups}}
+        <p><a href="/schedule/{{this._id}}/sch.ics">{{this.name}}</a></p>
+    {{/each}}
+</body>
+</html>

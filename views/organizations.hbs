@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Организации</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+     
+    <h1>ВУЗы</h1>
+    {{#each cities}}
+        <h2>{{this.name}}</h2>
+        {{#each this.organizations}}
+            <p><a href="/schedule/organizations/{{this._id}}">{{this.name}}</a></p>
+        {{/each}}
+    {{/each}}
+</body>
+</html>
