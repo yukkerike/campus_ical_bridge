@@ -3,10 +3,12 @@
 <head>
     <title>Организации</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
      
     <h1>{{for}}</h1>
+    <p>Скопируйте ссылку на файл с расписанием и импортируйте в свой календарь: <a href="https://support.google.com/calendar/answer/37100?hl=ru&co=GENIE.Platform%3DDesktop#:~:text=%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%89%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B9%20%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C%20%D0%BF%D0%BE%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B5">Google Календарь</a>, <a href="https://support.microsoft.com/ru-ru/office/%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82-%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8F-%D0%B8%D0%BB%D0%B8-%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%BD%D0%B0-%D0%BD%D0%B5%D0%B3%D0%BE-%D0%B2-outlook-com-cff1429c-5af6-41ec-a5b4-74f2c278e98c#:~:text=%D0%9F%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C">Microsoft Outlook</a>, <a href="https://support.apple.com/ru-ru/guide/calendar/icl1022/mac#:~:text=%D0%9F%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C">Apple Календарь</a></p>
     {{#each groups}}
         <p><a href="/schedule/{{this._id}}/sch.ics">{{this.name}}</a></p>
     {{/each}}
