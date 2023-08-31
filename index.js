@@ -4,6 +4,12 @@ const express = require("express")
 const app = express()
 const path = require('path')
 
+const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer LXe_4D6utEy-o4vtHGtwraF7OVsDTgOnCyvzkCDWwc_u9NSuJW_NqSKTlmMZtTB5O7qYdgYKuVwQVkA2',
+    'User-Agent': 'Campus/4.4.1 (ru.dewish.campus; build:4.4.1; Android Android 13)'
+}
+
 app.set("view engine", "hbs")
 app.set('views', path.join(__dirname, "views"));
 app.get("/", async (_, res) => {
@@ -52,23 +58,33 @@ let getDate = (days) => {
 }
 
 const fetch_schedule = async (groupId, date) => {
-    return (await fetch(`https://api.campus.dewish.ru/v3/entities/${groupId}/schedule?from=${date[0]}&to=${date[1]}`)).json()
+    const response = await fetch(`https://api.campus.dewish.ru/v3/entities/${groupId}/schedule`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            from: date[0],
+            to: date[1]
+        })
+    });
+    return response.json();
 }
 
+
 const fetch_organizations = async () => {
-    return (await fetch('https://api.campus.dewish.ru/v3/organizations')).json()
+    return (await fetch('https://api.campus.dewish.ru/v3/organizations', { headers })).json()
 }
 
 const fetch_groups = async (organizationId) => {
-    return (await fetch(`https://api.campus.dewish.ru/v3/organizations/${organizationId}/entities?type=Group`)).json()
+    return (await fetch(`https://api.campus.dewish.ru/v3/organizations/${organizationId}/entities?type=Group`, { headers })).json()
 }
 
 const fetch_teachers = async (organizationId) => {
-    return (await fetch(`https://api.campus.dewish.ru/v3/organizations/${organizationId}/entities?type=Teacher`)).json()
+    return (await fetch(`https://api.campus.dewish.ru/v3/organizations/${organizationId}/entities?type=Teacher`, { headers })).json()
 }
 
 const createIcal = (schedule) => {
     const calendar = ical({ name: 'Расписание занятий', timezone: 'Europe/Moscow' })
+    console.log(schedule)
     schedule.days.forEach(day => {
         if (day.intervals)
             day.intervals.forEach(interval => {
@@ -96,6 +112,7 @@ const createIcal = (schedule) => {
             })
     })
     return calendar.toString()
+
 }
 
 app.listen(process.env.PORT || 3000)
